@@ -5,7 +5,7 @@ public class Atm extends CaseStudy {
 	private AtmContext _fsm;
 
 	private int attempts;
-
+private int zedna;
 	private int cur_balance;
 
 	private java.lang.String pin;
