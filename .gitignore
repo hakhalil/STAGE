@@ -1,9 +1,16 @@
 *.class
 
-#Eclipse folders
-.settings/
+#specific exclusion list for our project
 .metadata/
+.settings/
 bin/
+src/TestDriver/.metadata/
+src/TestDriver/ATM/
+src/TestDriver/CruiseControl/
+src/TestDriver/EFSMATM/
+src/TestDriver/OrdSet2_6/
+src/TestDriver/OrdSet3_9/
+src/TestDriver/VCR/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
