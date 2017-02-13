@@ -90,9 +90,11 @@ public class StateBasedTest {
 		String outputFileName = args[2];
 
 		Graph inputGraph = Graph.constructGraph(inputFileName);
+		long startTime = System.currentTimeMillis();
 		RandomAlgorithm randomGenerator = new RandomAlgorithm();
 		randomGenerator.CreateForest(inputGraph);
-
+		System.out.println("Execution time is: " + (System.currentTimeMillis() - startTime) + " seconds");
+		
 		int index = outputFileName.indexOf(".dot");
 
 		// remove the file extension so we can create multiple file names based
@@ -102,6 +104,7 @@ public class StateBasedTest {
 
 		
 		String treePathsFileName = outputFileName;
+	
 		ArrayList<Tree<String>> forest = randomGenerator.getTreeList();
 		boolean identical = randomGenerator.compareAllTrees(forest);
 		for (int treesCount = 0; forest != null && treesCount < forest.size(); treesCount++) {
@@ -118,8 +121,9 @@ public class StateBasedTest {
 
 		Graph inputGraph = Graph.constructGraph(inputFileName);
 		RoundTripAlgorithm RTGenerator = new RoundTripAlgorithm();
+		long startTime = System.currentTimeMillis();
 		RTGenerator.generateRoundTripPaths(inputGraph);
-
+		System.out.println("Execution time is: " + (System.currentTimeMillis() - startTime) + " seconds");
 		// remove the file extension so we can create multiple file names based
 		// on the entered value
 

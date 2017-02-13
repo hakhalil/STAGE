@@ -278,22 +278,22 @@ public class DepthAlogirthm {
 	}
 	/**
 	 * This is a recursive method that creates combinations of leading paths. 
-	 * Each leading path is leading to one of the duplicate nodes (i.e. with more than 1 incoming edge).
-	 * All duplicate nodes must be represented in each of the combinations. We make sure that the 
+	 * Each leading path is leading to one of the MIEN nodes (i.e. with more than 1 incoming edge).
+	 * All MIEN nodes must be present in all combinations. We make sure that the 
 	 * combinations are selected in a way that does not violate the depth first traversal of the graph.
 	 * 
 	 * Note that a graph can generate multiple trees, and the difference between those trees are where 
-	 * the duplicate nodes are located. We position them based on their leading path.
+	 * the MIEN nodes are located. We position them based on their leading path.
 	 * 
-	 * With each recursion we explore one of the duplicate nodes
+	 * With each recursion we explore one of the MIEN nodes
 	 * 
 	 * @param graph
-	 * @param combination
-	 * @param currentIndex
+	 * @param combination : initially (before the recursion) empty
+	 * @param currentIndex : index of the MIEN node the paths to which are currently examined
 	 */
 	public void createPathCombinations(Graph graph, ArrayList<String> combination, int currentIndex) 
 	{
-		//Check that there is any duplicate nodes before starting, otherwise, there is no need for this work
+		//Check that there is any duplicate (MIEN) nodes before starting, otherwise, there is no need for this work
 		GraphNode graphNode = null;
 		if(currentIndex< graph.getDuplicateNodes().size()){
 			graphNode = graph.getDuplicateNodes().get(currentIndex);
@@ -303,6 +303,7 @@ public class DepthAlogirthm {
 
 		//For the current node, go through all leading paths one by one to use them
 		//to build a tree
+		//loop on all the paths leading to the current node
 		for(int curNodePathsIndexj=0; curNodePathsIndexj<graphNode.leadingPaths.size();curNodePathsIndexj++){
 			String path = graphNode.leadingPaths.get(curNodePathsIndexj);
 			boolean pathRejected = false;
@@ -310,24 +311,34 @@ public class DepthAlogirthm {
 			@SuppressWarnings("unchecked")
 			ArrayList<String> localCombination = (ArrayList<String>)combination.clone();
 			
-			//Creating a set of leading paths (a combination of them) each path representing a duplicate node
+			//Creating a set of leading paths (a combination of them) each paths starts from the root of the tree and reaches one MIEN node
 			//To ensure depth first traversal, the path of each of the nodes should have the maximum 
-			//similarity with the other paths (i.e. has as many edges as possible common between the paths)
+			//similarity with the other paths (i.e. has the longest possible common sequence of edges between the paths)
+			//The loop will not be entered the first time the function is called since initially the array combination is empty
+			
+			//Loop on each path leading to one MIEN node that(the path) has been previously added to the tree
 			for(int setOfPathsIndex=0; setOfPathsIndex<combination.size()&&!pathRejected;setOfPathsIndex++){
 				
 				//Get the intersection between <code>path</code> of the current node and the path selected 
 				//for previous nodes. That is to say, how many edges in path
-				//of the current node are similar to the edges in the path of the previously SELECTED duplicate node
+				//of the current node are similar to the edges in the path of the previously SELECTED MIEN node path
+				//Getting the common prefix between the path that we are intending to add and the path leading to each MIEN node that 
+				//has been added to the tree in a previous call to the current function
 				String currentPathIntersection = this.greatestCommonPrefix(path, combination.get(setOfPathsIndex));
 				
-				//While we are not sure that the last step provided the best option, we continue by going through 
+				//While we are not sure that the last step satisfies the depth first criteria, we continue by going through 
 				//the following loop which compares each of the paths leading to the previously investigated duplicate node with  
 				//all the paths in the current duplicate node, the permutations are created into tuples and the tuple with  
 				//the longest intersection represents the tuple that respects most the depth first traversal because the
 				//longest intersection translates to the deepest common path between the two nodes
+				
+				//For the MIEN node that has already been added to the tree and whose path is being examined 
+				//against the current path that we want to add, we loop on the other paths leading to this MIEN node
 				for(int z=0; !pathRejected && z<graph.getDuplicateNodes().get(setOfPathsIndex).leadingPaths.size();z++){
 
 					String otherPathsInteresection = this.greatestCommonPrefix(path, graph.getDuplicateNodes().get(setOfPathsIndex).leadingPaths.get(z));
+					//If there is another paths leading to MIEN node (Y) that has longer common prefix with the path leading to MIEN node (X), 
+					//Then the currently examined path should be rejected
 					if((otherPathsInteresection.length()>currentPathIntersection.length()))
 						pathRejected = true;
 					else
@@ -349,7 +360,9 @@ public class DepthAlogirthm {
 			}
 			if(!pathRejected){
 				localCombination.add(path);
+				//The counter points to the next MIEN node the paths of which are to be processed in the coming recursive call to createPathCombinations
 				int counter=currentIndex+1;
+				//recursion
 				createPathCombinations(graph, localCombination,counter);
 				
 				//Normally trees are created by integrating a set of leading paths that leads to all
@@ -362,9 +375,6 @@ public class DepthAlogirthm {
 		}
 
 	}
-
-
-
 
 	public String greatestCommonPrefix(String a, String b) {
 		int minLength = Math.min(a.length(), b.length());

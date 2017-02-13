@@ -218,7 +218,7 @@ public class Graph extends Tree<String>{
 			GraphNode node = getNodebyValue(nodeValue);
 			//if the node has been already added to the list of nodes with more than one ingoing edge, don't 
 			//add it again
-			if( !getDuplicateNodes().contains(node))
+			if( !getDuplicateNodes().contains(node) && !(node.getNodeValue()==initialNode.getNodeValue()))
 				duplicateNodes.add(node);
 			return node;
 			
