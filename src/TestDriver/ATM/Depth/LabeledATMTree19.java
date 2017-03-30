@@ -1,4 +1,4 @@
-package TestDriver.ATM.Breadth;
+package TestDriver.ATM.Depth;
 import org.junit.Test;
 
 import TestDriver.OverflowException;
@@ -6,7 +6,7 @@ import TestDriver.TestDriver;
 import junit.framework.TestCase;
 
 
-public class ReplaceThis extends TestCase{
+public class LabeledATMTree19 extends TestCase{
 
 	int preLast = 0;
 	boolean result = false;
@@ -20,10 +20,10 @@ public class ReplaceThis extends TestCase{
 //		driver.readStateMap("StateMap.txt");
 
 		String transtionMapFileName = "../Examples/TestDriver/ATM/TransitionFunctionMap.txt";
-		String testSuiteName = "../Examples/TestDriver/ATM/Breadth/ReplaceThis.txt";
+		String testSuiteName = "../Examples/TestDriver/ATM/Depth/LabeledATMTree19.txt";
 		System.out.println("Running Test Suite "+ testSuiteName);
 		driver.readFunctionToTransitionMap(transtionMapFileName);
-		driver.RunTestCases(testSuiteName);
-	}		
+		boolean success = driver.RunTestCases(testSuiteName);
+		assertTrue(success);	}		
 }
 
