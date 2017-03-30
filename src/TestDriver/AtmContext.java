@@ -4,15 +4,30 @@ package TestDriver;
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) 
 // Source File Name:   AtmContext.java
-
-import statemap.*;
+import statemap.FSMContext;
+import statemap.State;
+import statemap.StateUndefinedException;
 
 public class AtmContext extends FSMContext
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	protected static class MainMap_Default extends AtmState
 	{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		private static final class MainMap_Quit extends MainMap_Default
 		{
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 
 			protected void Reset(AtmContext atmcontext)
 			{
@@ -41,6 +56,11 @@ public class AtmContext extends FSMContext
 		private static final class MainMap_ProcessS extends MainMap_Default
 		{
 
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			protected void Receipt(AtmContext atmcontext)
 			{
 				try {
@@ -68,6 +88,11 @@ public class AtmContext extends FSMContext
 		private static final class MainMap_ProcessC extends MainMap_Default
 		{
 
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			protected void Receipt(AtmContext atmcontext)
 			{
 				try {
@@ -94,6 +119,11 @@ public class AtmContext extends FSMContext
 
 		private static final class MainMap_SelectSAction extends MainMap_Default
 		{
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 
 			protected void Balance(AtmContext atmcontext)
 			{
@@ -173,6 +203,11 @@ public class AtmContext extends FSMContext
 		private static final class MainMap_SelectCAction extends MainMap_Default
 		{
 
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			protected void Balance(AtmContext atmcontext)
 			{
 				try {
@@ -251,6 +286,11 @@ public class AtmContext extends FSMContext
 		private static final class MainMap_SelectAccount extends MainMap_Default
 		{
 
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			protected void Checking(AtmContext atmcontext)
 			{
 				try {
@@ -301,6 +341,11 @@ public class AtmContext extends FSMContext
 
 		private static final class MainMap_Validate extends MainMap_Default
 		{
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 
 			protected void Pin( AtmContext context, java.lang.String p )
 			{
@@ -371,6 +416,10 @@ public class AtmContext extends FSMContext
 
 		private static final class MainMap_Idle extends MainMap_Default
 		{
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			private MainMap_Idle(String s, int i)
 			{
 				super(s, i);
@@ -419,6 +468,11 @@ public class AtmContext extends FSMContext
 
 	public static abstract class AtmState extends State
 	{
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 
 		protected void Entry(AtmContext atmcontext)
 		{

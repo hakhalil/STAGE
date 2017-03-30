@@ -1,13 +1,11 @@
 package edu.carleton.thesis.statetest;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import edu.carleton.thesis.algorithm.BreadthAlgorithm;
 import edu.carleton.thesis.algorithm.DepthAlogirthm;
 import edu.carleton.thesis.algorithm.RandomAlgorithm;
 import edu.carleton.thesis.algorithm.RoundTripAlgorithm;
-import edu.carleton.thesis.baseobj.Edge;
 import edu.carleton.thesis.baseobj.Tree;
 import edu.carleton.thesis.structs.Graph;
 
@@ -22,7 +20,7 @@ public class StateBasedTest {
 		StateBasedTest sbTest = new StateBasedTest();
 		sbTest.checkParameters(args);
 
-		long startTime = System.currentTimeMillis();
+		System.currentTimeMillis();
 		
 		switch ((args[0]).getBytes()[0]) {
 		case 'D':
@@ -57,7 +55,7 @@ public class StateBasedTest {
 		Tree<String> tree = breadthGenerator.generateBFTree(inputGraph);
 		ArrayList<Tree<String>> forest = breadthGenerator.generateAllPossibleTrees(tree);
 		System.out.println("Execution time is: " + (System.currentTimeMillis() - startTime) + " seconds");
-		boolean identical = breadthGenerator.compareAllTrees(forest);
+		breadthGenerator.compareAllTrees(forest);
 		int index = outputFileName.indexOf(".dot");
 
 		// remove the file extension so we can create multiple file names based
@@ -106,7 +104,7 @@ public class StateBasedTest {
 		String treePathsFileName = outputFileName;
 	
 		ArrayList<Tree<String>> forest = randomGenerator.getTreeList();
-		boolean identical = randomGenerator.compareAllTrees(forest);
+		randomGenerator.compareAllTrees(forest);
 		for (int treesCount = 0; forest != null && treesCount < forest.size(); treesCount++) {
 			forest.get(treesCount).generateDOTfile(outputFileName + treesCount + ".dot");
 			forest.get(treesCount).printPaths(treePathsFileName);

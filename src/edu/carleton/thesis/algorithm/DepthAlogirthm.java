@@ -75,7 +75,7 @@ public class DepthAlogirthm {
 		int lastTreeToUpdate = treeIndex;
 		int lastIndex = treeIndex;
 		//TBD: This is not needed. The new algorithm uses the first permutation only
-		ArrayList<Edge<String>> allpermutations = graphNode.getOutgoingEdges();
+		//ArrayList<Edge<String>> allpermutations = graphNode.getOutgoingEdges();
 				//.generateAllPermutations(graph);
 
 		Tree<String> parentTree;

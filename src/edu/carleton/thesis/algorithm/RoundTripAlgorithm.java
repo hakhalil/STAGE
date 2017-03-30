@@ -24,8 +24,6 @@ public class RoundTripAlgorithm {
 
 		HashMap<String, Node<String>> allNodes = graph.getAllNodes();
 		Iterator<String> iterator = allNodes.keySet().iterator();
-		//Iterate on all nodes to get all round trips for each starting node
-		List<Edge<String>>  path = null;
 		while (iterator.hasNext()) {
 			Node<String> node = allNodes.get(iterator.next());
 			//List<Edge<String>> prefix = new ArrayList<Edge<String>>();
@@ -124,7 +122,7 @@ public class RoundTripAlgorithm {
 				ArrayList<Edge<String>> edges = destNode.getOutgoingEdges();
 				if(edges!=null){
 					for(Edge<String> e : edges){
-						Node<String> node = g.getNodebyValue(e.getDestinationNodeValue());
+						g.getNodebyValue(e.getDestinationNodeValue());
 						if(!containsLeadingEdge(e)){
 							q.add(e);
 							vis.put(e, true);

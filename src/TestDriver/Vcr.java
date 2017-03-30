@@ -1,7 +1,20 @@
 package TestDriver;
 
-import TestDriver.VCR.*;
+import TestDriver.VCR.EjectButton;
+import TestDriver.VCR.EndOfTapeEvent;
+import TestDriver.VCR.FFButton;
+import TestDriver.VCR.InsertingTape;
 import TestDriver.VCR.Off;
+import TestDriver.VCR.PauseButton;
+import TestDriver.VCR.PlayButton;
+import TestDriver.VCR.PowerButton;
+import TestDriver.VCR.RecButton;
+import TestDriver.VCR.RewButton;
+import TestDriver.VCR.StopButton;
+import TestDriver.VCR.Tape;
+import TestDriver.VCR.VcrEvent;
+import TestDriver.VCR.VcrLogger;
+import TestDriver.VCR.VcrState;
 
 public class Vcr extends CaseStudy{
 	// Please note, the tape speeds are defined in
@@ -106,18 +119,23 @@ public class Vcr extends CaseStudy{
 
 	public void recButton(){
 		VcrState theState = getState();
-		if( theState!= null)
-			theState = theState.processEvent(RecButton.Instance(),this,getTape());
-		setState(theState);
-		setCurrentState();
+		try {
+			if( theState!= null)
+				theState = theState.processEvent(RecButton.Instance(),this,getTape());
+			setState(theState);
+			setCurrentState();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void processEvent(VcrEvent event)
 	{
-		Vcr.log.println("Processing event: " + event.toString());
+		if( event != null ) Vcr.log.println("Processing event: " + event.toString());
 		VcrState theState = getState();
 		if( theState != null)
-			theState = theState.processEvent(event,this,getTape());
+			if( event != null ) theState = theState.processEvent(event,this,getTape());
 		setState(theState);
 	}
 
@@ -129,7 +147,7 @@ public class Vcr extends CaseStudy{
 		if( theState != null)
 			theState = theState.processEvent(InsertingTape.Instance(paramTape),this,paramTape);
 		setState(theState);
-		//	insertTape (tape);
+		insertTape (tape);
 		setCurrentState();
 	}
 
@@ -172,9 +190,16 @@ public class Vcr extends CaseStudy{
 
 	public void setState(VcrState inState) {
 		if( inState != null)
-			Vcr.log.println("Setting state to: " + inState.toString());
-		state = inState;
-		
+		{
+			try {
+				if(Vcr.log!=null)
+					Vcr.log.println("Setting state to: " + inState.toString());
+				state = inState;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public VcrState getState() {
@@ -238,7 +263,7 @@ public class Vcr extends CaseStudy{
 					suffex = "";
 				else if( getTape()==null)
 					suffex = "NoTape";
-				else if(getTape().isProtected())
+				else if((getTape() != null) && getTape().isProtected())
 					suffex = "Protected";
 				else
 					suffex = "NotProtected";

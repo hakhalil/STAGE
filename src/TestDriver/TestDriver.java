@@ -101,11 +101,7 @@ public class TestDriver {
 			scanMapFile = new Scanner(fileMap);
 			while(scanMapFile.hasNextLine())
 			{
-				//This splits each line to two parts state number, and state map.
-				String[] parts = scanMapFile.nextLine().split("-");
-				//store the map between the state number and state name
-				//and the arguments types
-//				stateMap.put(new Integer(parts[0]), parts[1]);
+				scanMapFile.nextLine().split("-");
 			}
 		} catch (FileNotFoundException fnfe) {
 			System.out.println("No such file exists ENUM");
@@ -235,6 +231,7 @@ public class TestDriver {
 						}
 					}
 				}
+							
 			}
 			scanMapLine.close();
 		} catch (FileNotFoundException fnfe) {
@@ -373,6 +370,7 @@ public class TestDriver {
 		return cArg;
 	}
 
+	@SuppressWarnings("unused")
 	private void checkParameters(String[] args) {
 		if (args == null || args.length != 2) {
 			System.out
@@ -419,7 +417,7 @@ public class TestDriver {
 	static public void main(String[] args) {
 
 
-		TestDriver driver = new TestDriver();
+		new TestDriver();
 		//driver.checkParameters(args);
 //		driver.readStateMap("StateMap.txt");
 		String tetJUnitFile = args[1];

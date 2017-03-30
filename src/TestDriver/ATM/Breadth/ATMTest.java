@@ -1,12 +1,9 @@
 package TestDriver.ATM.Breadth;
-import junit.framework.TestCase;
-
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import TestDriver.OverflowException;
 import TestDriver.TestDriver;
+import junit.framework.TestCase;
 
 
 public class ReplaceThis extends TestCase{

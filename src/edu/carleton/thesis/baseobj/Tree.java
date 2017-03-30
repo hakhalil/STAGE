@@ -2,9 +2,9 @@ package edu.carleton.thesis.baseobj;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.ArrayList;
 
 /**
  * A base template class that represents a tree which is compromised of a value

@@ -3,7 +3,6 @@ package edu.carleton.thesis.algorithm;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
 import edu.carleton.thesis.baseobj.Edge;
 import edu.carleton.thesis.baseobj.Node;
 import edu.carleton.thesis.baseobj.Tree;

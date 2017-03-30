@@ -4,15 +4,16 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.StringTokenizer;
 
-import com.alexmerz.graphviz.ParseException;
 import com.alexmerz.graphviz.Parser;
 import com.alexmerz.graphviz.objects.Edge;
 import com.alexmerz.graphviz.objects.Graph;
 import com.alexmerz.graphviz.objects.Node;
+
 
 public class ReadWriteDOTFile {
     private Graph readGraph;
@@ -23,7 +24,7 @@ public class ReadWriteDOTFile {
     public ReadWriteDOTFile(String filePath) throws Exception, FileNotFoundException, ParseException {
         FileReader in=null;
         File f = new File( filePath );
-	Parser p=null;
+        Parser p=null;
 
         in = new FileReader(f);
         p = new Parser();
