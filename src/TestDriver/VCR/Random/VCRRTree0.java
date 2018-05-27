@@ -23,8 +23,8 @@ public class VCRRTree0 extends TestCase{
 		String testSuiteName = "../Examples/TestDriver/VCR/Random/VCRRTree0.txt";
 		System.out.println("Running Test Suite "+ testSuiteName);
 		driver.readFunctionToTransitionMap(transtionMapFileName);
-		boolean Success = driver.RunTestCases(testSuiteName);
-		assertTrue(Success);	
-		}		
+		boolean bSuccess = driver.RunTestCases(testSuiteName);
+		assertTrue(bSuccess);
+	}		
 }
 
