@@ -82,7 +82,9 @@ package TestDriver;
           			double steady = (double)setSpeed/12.0;
           			cs.setThrottle(steady+error); //simplified feed back control
         		}
-        		Thread.sleep(50);
+        		Integer sleepTime = 50;
+        		if( sleepTime >= 0)
+        			Thread.sleep(sleepTime);
       		}
     	} catch (InterruptedException e) {}
 	    	speedController=null;

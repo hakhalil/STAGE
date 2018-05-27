@@ -20,7 +20,7 @@ public class LabeledATMTree9 extends TestCase{
 //		driver.readStateMap("StateMap.txt");
 
 		String transtionMapFileName = "../Examples/TestDriver/ATM/TransitionFunctionMap.txt";
-		String testSuiteName = "../Examples/TestDriver/ATM/Depth/LabeledATMTree9.txt";
+		String testSuiteName = "../Examples/TestDriver/ATM/Random/LabeledATMTree9.txt";
 		System.out.println("Running Test Suite "+ testSuiteName);
 		driver.readFunctionToTransitionMap(transtionMapFileName);
 		boolean success = driver.RunTestCases(testSuiteName);

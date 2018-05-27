@@ -20,7 +20,7 @@ public class ReplaceThis extends TestCase{
 //		driver.readStateMap("StateMap.txt");
 
 		String transtionMapFileName = "../Examples/TestDriver/ATM/TransitionFunctionMap.txt";
-		String testSuiteName = "../Examples/TestDriver/ATM/Depth/ReplaceThis.txt";
+		String testSuiteName = "../Examples/TestDriver/ATM/Random/ReplaceThis.txt";
 		System.out.println("Running Test Suite "+ testSuiteName);
 		driver.readFunctionToTransitionMap(transtionMapFileName);
 		boolean success = driver.RunTestCases(testSuiteName);

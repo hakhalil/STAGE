@@ -42,6 +42,7 @@ public class RoundTripAlgorithm {
 	{
 		if (currentVertex!=null && startVertex.getNodeValue() == currentVertex.getNodeValue())
 		{
+			//The start node has been reached again
 			//get the prefix
 			List<Edge<String>> path = new ArrayList<Edge<String>>();
 			//path.add(startVertex);
@@ -64,6 +65,7 @@ public class RoundTripAlgorithm {
 		{ 
 			currentVertex = startVertex;
 		}
+		//getting the neighbors of the current vertex
 		List<Edge<String>> neighbors = currentVertex.getOutgoingEdges();//getOutNeighbors(g, currentVertex);
 		if(neighbors != null)
 		{
@@ -71,6 +73,7 @@ public class RoundTripAlgorithm {
 			{
 				boolean found = false;
 				for (Edge<String> e :currentPath){
+					//if a round-trip path is found
 					if (e.getDestinationNodeValue() == neighbor.getDestinationNodeValue())
 						found = true;
 				}
@@ -101,6 +104,7 @@ public class RoundTripAlgorithm {
 
 	private static Map<Edge<String>, Edge<String>> prev = new HashMap<Edge<String>, Edge<String>>();
 
+	//getting the shortest path between two nodes in a graph
 	public static List<Edge<String>> getDirections(Graph g, Node<String> start, Node<String> finish){
 		vis.clear();
 		prev.clear();
